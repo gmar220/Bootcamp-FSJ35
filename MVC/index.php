@@ -1,10 +1,13 @@
 <?php 
-
-
-require './controllers/ProductoController.php';
+require_once './controllers/ProductoController.php';
 $controller = new ProductController();
 
+//print "Soy el valor del get: ";
+//print_r($_GET);
+
+// TERNARIO -> EVALUA UNA CONDICION ? CASO TRUE : CASO FALSE;
 $action = isset($_GET['action']) ? $_GET['action'] : 'read';
+
 switch($action){
     case 'read':
         $controller->read();
@@ -18,6 +21,9 @@ switch($action){
     case 'delete':
         $controller->delete();
         break;
+    default:
+        $controller->read();
+        break;
 }
 
 //BUSCAR EL ARCHIVO Y TRAERLO A DONDE LO VAN A UTILIZAR
@@ -27,17 +33,16 @@ switch($action){
          */
 
         
-        require './repositories/mysql/Database.php';
+       // require './repositories/mysql/Database.php';
         //include
 
 
         //Aca creo la base de datos para poner obtener el objeto inicial
-        $database = new Database(); 
+        //$database = new Database(); 
 
         //Crear la conexion con esa conexion ya puedo trabajar
-        $db = $database->getConnection();
+        //$db = $database->getConnection();
 
-        print_r($db);
+        //print_r($db);
 ?>
-
 

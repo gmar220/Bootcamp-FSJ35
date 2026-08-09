@@ -61,18 +61,24 @@ class Product {
      */
     public function update($id, $nombre, $precio, $descuento, $cantidad) {
         $query = "UPDATE {$this->table_name} 
-                  SET nombre = :nombre, precio = :precio, descuento = :descuento, cantidad = :cantidad 
+                  SET nombre = :nombre, 
+                      precio = :precio, 
+                      descuento = :descuento, 
+                      cantidad = :cantidad 
                   WHERE id = :id";
+                  
         $sentence = $this->db_connection->prepare($query);
 
-        $sentence->bindParam(':id', $id);
-        $sentence->bindParam(':nombre', $nombre);
-        $sentence->bindParam(':precio', $precio);
-        $sentence->bindParam(':descuento', $descuento);
-        $sentence->bindParam(':cantidad', $cantidad);
-
-        return $sentence->execute();
-    } 
+        // CORRECCIÓN: Pasamos el arreglo de datos directamente en el execute.
+        // Esto evita los problemas de referencia de bindParam y asegura la edición fija.
+        return $sentence->execute([
+            ':id' => $id,
+            ':nombre' => $nombre,
+            ':precio' => $precio,
+            ':descuento' => $descuento,
+            ':cantidad' => $cantidad
+        ]);
+    }
 
     /**
      * Obtiene un producto específico por su ID.
