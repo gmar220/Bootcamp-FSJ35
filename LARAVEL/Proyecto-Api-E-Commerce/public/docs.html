@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API E-Commerce - Documentación Oficial</title>
+    <link rel="stylesheet" type="text/css" href="https://cloudflare.com">
+    <style>
+        html { box-sizing: border-box; overflow-y: scroll; }
+        *, *:before, *:after { box-sizing: inherit; }
+        body { margin: 0; background: #fafafa; }
+    </style>
+</head>
+<body>
+    <div id="swagger-ui"></div>
+
+    <script src="https://cloudflare.com"></script>
+    <script src="https://cloudflare.com"></script>
+    <script>
+        window.onload = function() {
+            // SOLUCIÓN 
+            const specData =         window.onload = function() {
+            // OBJETO DE CONTROL: Estructura OpenAPI mínima y perfecta para forzar el dibujado
+            const specData = {
+                "openapi": "3.0.0",
+                "info": {
+                    "title": "API de Control E-Commerce",
+                    "version": "1.0.0",
+                    "description": "Prueba de renderizado forzado para verificar el motor gráfico"
+                },
+                "paths": {
+                    "/api/test": {
+                        "get": {
+                            "summary": "Ruta de prueba de diagnóstico",
+                            "responses": {
+                                "200": {
+                                    "description": "El motor gráfico funciona correctamente"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            SwaggerUIBundle({
+                spec: specData, // <-- Cambiamos 'url' por 'spec' para leer la memoria directa
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout"
+            });
+        }
+    </script>
+</body>
+</html>

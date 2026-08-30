@@ -1,0 +1,176 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Segura de E-commerce - Laravel 12",
+        "description": "Documentación oficial OpenAPI de servicios comerciales críticos con pasarela Stripe",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "Catálogo"
+                ],
+                "summary": "Listado público del catálogo de productos",
+                "operationId": "f0f9f15528b19f3369fcbd6050d1c2b0",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Catálogo"
+                ],
+                "summary": "Crear un nuevo producto en el catálogo (Administrativo)",
+                "operationId": "e099f462029b92cc9c26d28134b96c9e",
+                "responses": {
+                    "201": {
+                        "description": "Producto creado exitosamente"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/checkout": {
+            "post": {
+                "tags": [
+                    "Transacciones"
+                ],
+                "summary": "Procesar orden de compra y cobro seguro en Stripe",
+                "operationId": "96ebacf8674c9c7199aae62f991a0a66",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "stripe_token",
+                                    "items"
+                                ],
+                                "properties": {
+                                    "stripe_token": {
+                                        "type": "string",
+                                        "example": "tok_visa"
+                                    },
+                                    "items": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "product_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "quantity": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Compra procesada"
+                    },
+                    "422": {
+                        "description": "Error de validación o inventario insuficiente"
+                    },
+                    "500": {
+                        "description": "Fallo en la pasarela Stripe"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/products/{id}": {
+            "put": {
+                "tags": [
+                    "Catálogo"
+                ],
+                "summary": "Editar los datos de un producto existente (Administrativo)",
+                "operationId": "d4d91e9e87d3f497df2a02f742fc4e26",
+                "responses": {
+                    "200": {
+                        "description": "Producto actualizado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Catálogo"
+                ],
+                "summary": "Eliminar un producto del catálogo (Administrativo)",
+                "operationId": "7d75dfbf9cdc2a396d78445ab4047b34",
+                "responses": {
+                    "200": {
+                        "description": "Producto eliminado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/my-history": {
+            "get": {
+                "tags": [
+                    "Transacciones"
+                ],
+                "summary": "Consultar el historial de compras del usuario autenticado",
+                "operationId": "2d4def68a07623cfad14c73300251833",
+                "responses": {
+                    "200": {
+                        "description": "Historial cargado con éxito"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Catálogo",
+            "description": "Catálogo"
+        },
+        {
+            "name": "Transacciones",
+            "description": "Transacciones"
+        }
+    ]
+}
