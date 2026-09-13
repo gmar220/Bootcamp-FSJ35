@@ -31,3 +31,42 @@ function update(request : string){
 }
 
 let otraVariable : string = "soy otra variable";
+
+// Manejo de arrays
+//Array indexado
+let arraycito = [1,2,3];
+console.log(arraycito[1]);
+
+//Array asociativo -> Vamos a tener que utilizaar un objeto
+//Objeto literal
+let arracitoAsociativo = {
+    "nombre" : "Alejandro"
+}
+
+console.log(arracitoAsociativo['nombre']);
+
+//Podemos crear tipos de datos
+
+type persona = {
+    nombre: string
+}
+
+let Guille : persona = {
+    "nombre" : "Guillermo"
+}
+
+function registro(valor: persona){
+    console.log(valor.nombre);
+
+}
+
+//Quiero que si o si el producto sea un objeto
+type Producto = {
+    precio:number
+}
+
+function mostrarPrecio(producto: Producto){
+    console.log(producto.precio);
+}
+
+mostrarPrecio({precio:15});
