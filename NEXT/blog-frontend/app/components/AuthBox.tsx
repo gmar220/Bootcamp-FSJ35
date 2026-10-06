@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { apiEcommerce } from '../lib/api'; // Corregido para usar tu API unificada del E-commerce
+import { apiEcommerce } from '../lib/api'; 
 import { useAuth } from '../context/AuthContext';
 
 interface AuthBoxProps {
@@ -18,7 +18,7 @@ export function AuthBox({ onError }: AuthBoxProps) {
     onError(null);
     try {
       if (isRegistering) {
-        // Petición directa al endpoint POST /api/register de tu Laravel 12
+        // Petición directa al endpoint POST /api/register de Laravel 12
         const res = await fetch('http://localhost:8000/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
