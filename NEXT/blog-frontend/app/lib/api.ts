@@ -10,9 +10,9 @@ const getHeaders = () => {
 };
 
 export const apiEcommerce = {
-  // --- AUTENTICACIÓN (Simulada para mantener tu AuthBox intacto localmente) ---
+  // --- AUTENTICACIÓN simulada
   async login(credentials: { email: string; password: string }) {
-    // Para la entrega puedes simular un login exitoso local
+    // simulando un login exitoso local
     return {
       token: 'supabase_mock_token',
       user: { id: 1, name: 'Administrador Supabase', email: credentials.email }
@@ -21,7 +21,7 @@ export const apiEcommerce = {
 
   // --- CATÁLOGO DE PRODUCTOS DESDE SUPABASE ---
   async getProducts() {
-    // Al añadir ?select=* Supabase te devuelve todas las filas en formato JSON de inmediato
+    // Al añadir ?select=* Supabase devuelve todas las filas en formato JSON de inmediato
     const res = await fetch(`${SUPABASE_URL}/products?select=*`, { 
       method: 'GET', 
       headers: getHeaders() 
