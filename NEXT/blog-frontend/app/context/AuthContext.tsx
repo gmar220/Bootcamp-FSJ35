@@ -3,8 +3,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-// CORRECCIÓN 1: Declaramos la interfaz del usuario directamente aquí.
-// Esto evita la importación circular de '../lib/api' que rompe el compilador de TypeScript.
+// Declaramos la interfaz del usuario directamente aquí.
 export interface User {
   id: number;
   name: string;
