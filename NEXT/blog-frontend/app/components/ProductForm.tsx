@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react';
 import { apiEcommerce } from '../lib/api';
 
-// CORRECCIÓN: Declaramos la interfaz aquí mismo de forma local.
-// Esto rompe la importación circular y soluciona el error 'unresolved any'.
+// Declaramos la interfaz aquí mismo de forma local.
 export interface Product {
   id: number;
   name: string;
@@ -56,10 +55,10 @@ export function ProductForm({ editingProduct, onSaved, onCancelEdit, onError }: 
       };
 
       if (editingProduct) {
-        // Modo Edición: PUT /api/products/{id} apuntando a tu Laravel
+        // Modo Edición: PUT /api/products/{id} apuntando a Laravel
         await apiEcommerce.updateProduct(editingProduct.id.toString(), productData);
       } else {
-        // Modo Creación: POST /api/products apuntando a tu Laravel
+        // Modo Creación: POST /api/products apuntando a Laravel
         await apiEcommerce.createProduct(productData);
       }
 
