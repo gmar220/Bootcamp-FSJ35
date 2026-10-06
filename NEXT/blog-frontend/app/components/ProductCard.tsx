@@ -1,6 +1,6 @@
 'use client';
 
-// CORRECCIÓN: Declaramos la interfaz aquí mismo de forma local.
+// Declaramos la interfaz aquí mismo de forma local.
 export interface Product {
   id: number;
   name: string;
@@ -10,7 +10,7 @@ export interface Product {
 
 interface ProductCardProps {
   product: Product;
-  isAuthenticated: boolean; // Estado enviado por el AuthContext de tu frontend
+  isAuthenticated: boolean; // Estado enviado por el AuthContext de frontend
   onEdit: (product: Product) => void;
   onDelete: (id: number) => void;
   onAddToCart: (product: Product) => void;
